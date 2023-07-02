@@ -1,0 +1,17 @@
+[tool.kedro]
+package_name = "laboratorio_11_kedro"
+project_name = "Laboratorio_11_kedro"
+kedro_init_version = "0.18.10"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = """
+--cov-report term-missing \
+--cov src/laboratorio_11_kedro -ra"""
+
+[tool.coverage.report]
+fail_under = 0
+show_missing = true
+exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
