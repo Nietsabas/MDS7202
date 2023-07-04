@@ -4,17 +4,16 @@ generated using Kedro 0.18.10
 """
 
 import logging
+from typing import Dict
+
 import mlflow
 import pandas as pd
-from sklearn.metrics import mean_absolute_error
-from typing import Dict
-import pandas as pd
-from sklearn.linear_model import LinearRegression
+from lightgbm import LGBMRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
 from sklearn.svm import SVR
 from xgboost import XGBRegressor
-from lightgbm import LGBMRegressor
-from kedro.pipeline import node
 
 
 def split_data(data: pd.DataFrame, params: Dict):
@@ -51,7 +50,7 @@ def get_best_model(experiment_id):
 
 # TODO: completar train_model
 def train_model(data):
-    X_train, X_valid, X_test, y_train, y_valid, y_test = split_data(data, params)
+    X_train, X_valid, X_test, y_train, y_valid, y_test = split_data(data)
 
     models = {
         "LinearRegression": LinearRegression(),
@@ -81,6 +80,7 @@ def train_model(data):
     best_model = get_best_model(experiment_id)
 
     return best_model
+
 
 def evaluate_model(model, X_test: pd.DataFrame, y_test: pd.Series):
     y_pred = model.predict(X_test)

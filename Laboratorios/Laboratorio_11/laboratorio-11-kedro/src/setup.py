@@ -1,8 +1,6 @@
 from setuptools import find_packages, setup
 
-entry_point = (
-    "laboratorio-11-kedro = laboratorio_11_kedro.__main__:main"
-)
+entry_point = "laboratorio-11-kedro = laboratorio_11_kedro.__main__:main"
 
 
 # get the dependencies and installs

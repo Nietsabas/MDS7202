@@ -3,10 +3,10 @@ This is a boilerplate pipeline 'train_model'
 generated using Kedro 0.18.10
 """
 
-from kedro.pipeline import Pipeline, node, pipeline
-from nodes import split_data, train_model, evaluate_model
 from kedro.io import DataCatalog
+from kedro.pipeline import Pipeline, node
 from kedro.runner import SequentialRunner
+from nodes import evaluate_model, split_data, train_model
 
 
 def create_pipeline(**kwargs):
@@ -54,13 +54,9 @@ def run_pipelines(pipeline, catalog):
 if __name__ == "__main__":
     parameters = dict(
         split_params=dict(
-            target="price",
-            train_ratio=0.8,
-            valid_ratio=0.1,
-            random_state=67
+            target="price", train_ratio=0.8, valid_ratio=0.1, random_state=67
         )
     )
     catalog = DataCatalog.from_config("conf/base/catalog.yml")
     pipeline = create_pipeline(**parameters)
     run_pipelines(pipeline, catalog)
-
