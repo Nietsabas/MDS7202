@@ -29,3 +29,12 @@ model_input_table:
   type: pandas.ParquetDataSet
   filepath: data/03_primary/model_input_table.parquet
 
+model_input:
+  type: pandas.ParquetDataSet
+  filepath: data/05_model_input/
+  versioned: false
+
+best_model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/best_model.pickle
+  versioned: false
